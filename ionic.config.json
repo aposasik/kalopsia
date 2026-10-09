@@ -1,0 +1,7 @@
+{
+  "name": "kalopsia",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
