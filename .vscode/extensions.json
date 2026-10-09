@@ -1,5 +1,12 @@
 {
-    "recommendations": [
-       "Webnative.webnative"
-    ]
+  // Το VS Code τα προτείνει όταν ανοίγεις το project (ίδια με το lucky-sevens + ό,τι χρειάζεται το Angular/Ionic).
+  "recommendations": [
+    "angular.ng-template",       // Angular: σύνδεση .html ↔ .ts, λάθη και αυτόματη συμπλήρωση στα templates
+    "vsls-contrib.codetour",     // CodeTour: οι ροές του κώδικα βήμα-βήμα μέσα στον editor
+    "vitest.explorer",           // τα τεστ στην πλαϊνή μπάρα: ▶ για ένα τεστ, βλέπεις ποιο απέτυχε
+    "usernamehw.errorlens",      // το λάθος γράφεται πάνω στη γραμμή, όχι μόνο στο Problems
+    "yoavbls.pretty-ts-errors",  // τα λάθη του TypeScript σε ανθρώπινη μορφή
+    "dbaeumer.vscode-eslint",    // κανόνες γραφής (ίδιοι με το «npm run lint» του αυτόματου ελέγχου)
+    "Webnative.webnative"        // το εργαλείο του Ionic: τρέξιμο, build, Capacitor από την πλαϊνή μπάρα
+  ]
 }

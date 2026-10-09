@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      // το «npm start» στο παρασκήνιο· το F5 περιμένει να γράψει «Local:» και μετά ανοίγει τον Chrome
+      "label": "npm start",
+      "type": "npm",
+      "script": "start",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "angular",
+        "pattern": { "regexp": "^x^" },
+        "background": { "beginsPattern": "Watch mode enabled|Building", "endsPattern": "Local:|bundle generation complete" }
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  // F5 = ανοίγει την εφαρμογή σε Chrome ΣΥΝΔΕΔΕΜΕΝΟ με το VS Code:
+  // τα breakpoints (κόκκινη τελεία αριστερά από τον αριθμό γραμμής) σταματούν εδώ, στο VS Code.
+  // Ξεκινά μόνο του και το npm start αν δεν τρέχει.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "💇 Εφαρμογή (breakpoints στο VS Code)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "npm start"
+    }
+  ]
+}

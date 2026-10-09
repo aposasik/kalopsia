@@ -1,11 +1,30 @@
 {
-  // Keeps VS Code from suggesting Ionic components off the entry points this app
-  // does not use. Patterns are matched against resolved .d.ts paths, not import
-  // specifiers, so they name @ionic/angular's actual type files. Never use a bare
-  // "@ionic/angular" here: it matches the whole package and blocks every Ionic
-  // auto-import (ionic-team/starters#1873).
+  // Από το template του Ionic: να μη προτείνει imports από αρχεία του Ionic που δεν χρησιμοποιούμε.
   "typescript.preferences.autoImportFileExcludePatterns": [
     "@ionic/angular/types/ionic-angular-lazy.d.ts",
     "@ionic/angular/types/ionic-angular-common.d.ts"
-  ]
+  ],
+
+  // ── Όπως στο lucky-sevens: για να ΔΙΑΒΑΖΕΙΣ τον κώδικα εύκολα ──
+  // Πάνω-πάνω μένει κολλημένη η κλάση/συνάρτηση όπου βρίσκεσαι
+  "editor.stickyScroll.enabled": true,
+  // Τα βελάκια για να ανοίγεις/κλείνεις κλάσεις και συναρτήσεις φαίνονται ΠΑΝΤΑ (όχι μόνο στο hover)
+  "editor.showFoldingControls": "always",
+  // Γκρι «υποδείξεις» μέσα στον κώδικα: ονόματα παραμέτρων και τύποι που βγάζει μόνο του το TypeScript
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  // Το μονοπάτι πάνω από τον κώδικα (κλικ = πας σε άλλη συνάρτηση του ίδιου αρχείου)
+  "breadcrumbs.enabled": true,
+  // Ίδια ζεύγη παρενθέσεων με ίδιο χρώμα + γραμμή που δείχνει πού ανοίγει/κλείνει το μπλοκ όπου είσαι
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+
+  // ── Τεστ (Vitest) ──
+  // Το Vitest explorer (το εικονίδιο με το δοκιμαστικό σωλήνα) διαβάζει τα *.spec.ts
+
+  // ── Αποθήκευση ──
+  "editor.formatOnSave": false,
+  "files.exclude": { "**/.angular": true, "www": true }
 }
