@@ -22,9 +22,32 @@
   "editor.guides.bracketPairs": "active",
 
   // ── Τεστ (Vitest) ──
-  // Το Vitest explorer (το εικονίδιο με το δοκιμαστικό σωλήνα) διαβάζει τα *.spec.ts
+  // Το plugin «Vitest» (εικονίδιο με τον δοκιμαστικό σωλήνα): ▶ δίπλα σε κάθε τεστ του πυρήνα.
+  // Διαβάζει ΜΟΝΟ αυτό το αρχείο ρυθμίσεων· το «npm test» συνεχίζει να τρέχει όλα τα τεστ μέσω Angular.
+  "vitest.rootConfig": "vitest.core.config.mts",
+
+  // ── Νέα αρχεία ──
+  // Το src είναι junction προς το OneDrive, και από εκεί δεν φτάνουν ειδοποιήσεις για νέα αρχεία.
+  // Έτσι ο TypeScript ξανακοιτάζει μόνος του τους φακέλους και δεν χρειάζεται «Restart TS Server».
+  "typescript.tsserver.watchOptions": {
+    "watchFile": "dynamicPriorityPolling",
+    "watchDirectory": "dynamicPriorityPolling",
+    "fallbackPolling": "dynamicPriorityPolling"
+  },
 
   // ── Αποθήκευση ──
+  // Αποθηκεύει όταν φεύγεις από το αρχείο (όχι κάθε 1″), για να μην ξανατρέχουν τα τεστ σε μισογραμμένο κώδικα
+  "files.autoSave": "onFocusChange",
   "editor.formatOnSave": false,
+
+  // ── Μορφοποίηση (Shift+Alt+F) ──
+  // Ο Prettier σπάει μόνος του τις μεγάλες γραμμές σε πολλές, όπως θα τις έσπαγες με το χέρι.
+  // Πάνω από 100 χαρακτήρες: ένα πεδίο του αντικειμένου ή ένα όρισμα ανά γραμμή. Μονά εισαγωγικά, όπως ήδη γράφεις.
+  // (Ο ενσωματωμένος formatter του TypeScript δεν σπάει ποτέ γραμμές· γι' αυτό «κρατούσε» τη μεγάλη γραμμή.)
+  // ΠΡΟΣΟΧΗ: επειδή υπάρχει .editorconfig, ο Prettier παίρνει το όριο από εκεί (max_line_length = 100), όχι από τις δύο γραμμές πιο κάτω.
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "prettier.printWidth": 100,
+  "prettier.singleQuote": true,
   "files.exclude": { "**/.angular": true, "www": true }
 }

@@ -2,6 +2,34 @@
   "version": "2.0.0",
   "tasks": [
     {
+      // Ctrl+Shift+B: ζωντανά τα τεστ ΜΟΝΟ του αρχείου που βλέπεις (από το refund.ts βρίσκει το refund.spec.ts)
+      "label": "Τεστ: αυτό το αρχείο (ζωντανά)",
+      "type": "shell",
+      "command": "node",
+      "args": [".vscode/test-here.cjs", "${file}"],
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      // Terminal → Run Task: πόσα it.todo μένουν σε κάθε αρχείο του πυρήνα και ποιο είναι το επόμενο
+      "label": "Τι μένει στον πυρήνα",
+      "type": "shell",
+      "command": "node",
+      "args": [".vscode/todo.cjs"],
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      // Terminal → Run Test Task: όλα τα τεστ μία φορά, όπως τα τρέχει το GitHub
+      "label": "Τεστ: όλα, μία φορά",
+      "type": "shell",
+      "command": "npm test -- --watch=false",
+      "group": { "kind": "test", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    },
+    {
       // το «npm start» στο παρασκήνιο· το F5 περιμένει να γράψει «Local:» και μετά ανοίγει τον Chrome
       "label": "npm start",
       "type": "npm",
