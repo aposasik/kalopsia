@@ -7,6 +7,9 @@
     "usernamehw.errorlens",      // το λάθος γράφεται πάνω στη γραμμή, όχι μόνο στο Problems
     "yoavbls.pretty-ts-errors",  // τα λάθη του TypeScript σε ανθρώπινη μορφή
     "dbaeumer.vscode-eslint",    // κανόνες γραφής (ίδιοι με το «npm run lint» του αυτόματου ελέγχου)
-    "Webnative.webnative"        // το εργαλείο του Ionic: τρέξιμο, build, Capacitor από την πλαϊνή μπάρα
+    "Webnative.webnative",       // το εργαλείο του Ionic: τρέξιμο, build, Capacitor από την πλαϊνή μπάρα
+    // Βήμα 4 (η βάση):
+    "supabase.vscode-supabase-extension", // Supabase: πίνακες, migrations και συναρτήσεις της βάσης στην πλαϊνή μπάρα
+    "ms-ossdata.vscode-pgsql"             // PostgreSQL: χρώματα, αυτόματη συμπλήρωση και έλεγχος στα .sql
   ]
 }
