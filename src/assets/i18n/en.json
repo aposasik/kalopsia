@@ -1,1 +1,27 @@
-{ "tabs": { "home": "Home", "appointments": "Appointments", "myHair": "My Hair", "perks": "Perks", "profile": "Profile" } }
+{
+    "tabs": {
+        "home": "Home",
+        "appointments": "Appointments",
+        "myHair": "My Hair",
+        "perks": "Perks",
+        "profile": "Profile"
+    },
+    "booking": {
+        "title": "Price list",
+        "minutes": "min",
+        "deposit": "Deposit",
+        "continue": "Continue",
+        "chooseStylist": "Choose a stylist",
+        "chooseTime": "Choose a day and time",
+        "noSlots": "No free time on this day",
+        "summary": "Summary",
+        "depositNote": "The deposit is 30% of the price. You pay the rest at the salon.",
+        "confirm": "Book the appointment",
+        "done": "Your appointment is booked.",
+        "name": "Name",
+        "phone": "Mobile",
+        "taken": "Someone else just booked this time. Please pick another.",
+        "closed": "The salon is closed at that time.",
+        "failed": "Something went wrong. Please try again."
+    }
+}

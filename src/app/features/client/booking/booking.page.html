@@ -1,0 +1,116 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{ 'booking.title' | transloco }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    @if (done()) {
+    <p class="done" role="status">{{ 'booking.done' | transloco }}</p>
+    }
+    <ion-list>
+        @for (service of store.services(); track service.id) {
+        <ion-item button detail (click)="pickService(service)" [class.selected]="store.service()?.id === service.id">
+            <ion-label>
+                <h2>{{ service.name }}</h2>
+                <p>{{ service.durationMin }} {{ 'booking.minutes' | transloco }}</p>
+            </ion-label>
+            <ion-note slot="end">{{ euro(service.priceCents) }}</ion-note>
+        </ion-item>
+        }
+    </ion-list>
+</ion-content>
+
+@if (store.service(); as service) {
+<ion-footer class="summary-bar">
+    <ion-toolbar>
+        <div class="bar">
+            <div>
+                <strong>{{ service.name }}</strong>
+                <span>{{ 'booking.deposit' | transloco }}: {{ euro(store.depositCents()) }}</span>
+            </div>
+            <ion-button (click)="sheet.set(store.stylist() ? 'time' : 'stylist')">{{ 'booking.continue' |
+                transloco }}</ion-button>
+        </div>
+    </ion-toolbar>
+</ion-footer>
+}
+
+<ion-modal [isOpen]="sheet() !== null" [breakpoints]="[0, 0.65, 1]" [initialBreakpoint]="0.65"
+    (didDismiss)="sheet.set(null)">
+    <ng-template>
+        <ion-content class="ion-padding">
+            @switch (sheet()) {
+            @case ('stylist') {
+            <h2>{{ 'booking.chooseStylist' | transloco }}</h2>
+            <ion-list>
+                @for (stylist of store.stylists(); track stylist.id) {
+                <ion-item button (click)="pickStylist(stylist)">
+                    <ion-label>{{ stylist.name }}</ion-label>
+                </ion-item>
+                }
+            </ion-list>
+            }
+            @case ('time') {
+            <h2>
+                @if (problem(); as key) {
+                <p class="problem" role="alert">{{ key | transloco }}</p>
+                }
+                {{ 'booking.chooseTime' | transloco }}
+            </h2>
+            <div class="chips">
+                @for (day of store.days(); track day.getTime()) {
+                <button type="button" class="chip" [class.on]="store.day()?.getTime() === day.getTime()"
+                    [disabled]="!hasSlots(day)" (click)="store.selectDay(day)">{{ dayLabel(day) }}</button>
+                }
+            </div>
+            @if (store.day()) {
+            <div class="chips">
+                @for (slot of store.slots(); track slot.getTime()) {
+                <button type="button" class="chip" [class.on]="store.slot()?.getTime() === slot.getTime()"
+                    (click)="store.selectSlot(slot)">{{ timeLabel(slot) }}</button>
+                } @empty {
+                <p>{{ 'booking.noSlots' | transloco }}</p>
+                }
+            </div>
+            }
+            <ion-button expand="block" [disabled]="!store.canConfirm()" (click)="sheet.set('summary')">
+                {{ 'booking.continue' | transloco }}
+            </ion-button>
+            }
+            @case ('summary') {
+            <h2>{{ 'booking.summary' | transloco }}</h2>
+            <ion-list>
+                <ion-item>
+                    <ion-label>{{ store.service()?.name }}</ion-label>
+                    <ion-note slot="end">{{ euro(store.service()?.priceCents ?? 0) }}</ion-note>
+                </ion-item>
+                <ion-item>
+                    <ion-label>{{ store.stylist()?.name }}</ion-label>
+                </ion-item>
+                @if (store.slot(); as slot) {
+                <ion-item>
+                    <ion-label>{{ dayLabel(slot) }} · {{ timeLabel(slot) }}</ion-label>
+                </ion-item>
+                }
+                <ion-item>
+                    <ion-label>{{ 'booking.deposit' | transloco }}</ion-label>
+                    <ion-note slot="end">{{ euro(store.depositCents()) }}</ion-note>
+                </ion-item>
+            </ion-list>
+            <p class="hint">{{ 'booking.depositNote' | transloco }}</p>
+            <ion-input [label]="'booking.name' | transloco" labelPlacement="stacked" autocomplete="name"
+                [value]="name()" (ionInput)="name.set($event.detail.value ?? '')"></ion-input>
+            <ion-input [label]="'booking.phone' | transloco" labelPlacement="stacked" type="tel" inputmode="tel"
+                autocomplete="tel" [value]="phone()" (ionInput)="phone.set($event.detail.value ?? '')"></ion-input>
+            @if (problem(); as key) {
+            <p class="problem" role="alert">{{ key | transloco }}</p>
+            }
+            <ion-button expand="block" [disabled]="!canBook()" (click)="confirm()">{{ 'booking.confirm' | transloco
+                }}</ion-button>
+            }
+            }
+        </ion-content>
+    </ng-template>
+</ion-modal>

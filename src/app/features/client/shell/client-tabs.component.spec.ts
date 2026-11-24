@@ -42,7 +42,7 @@ describe('ClientTabsComponent', () => {
 
   it('the labels are in Greek when the language is el', async () => {
     await setup('el');
-    await expect.poll(labels).toEqual(['Αρχική', 'Ραντεβού', 'My Hair', 'Προνόμια', 'Προφίλ']);
+    await expect.poll(labels).toEqual(['Αρχική', 'Ραντεβού', 'Τα μαλλιά μου', 'Προνόμια', 'Προφίλ']);
   });
 
   it('the labels are in English when the language is en', async () => {

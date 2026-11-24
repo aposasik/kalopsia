@@ -1,3 +1,4 @@
+
 import { bootstrapApplication } from '@angular/platform-browser';
 import {
   RouteReuseStrategy,
@@ -15,12 +16,24 @@ import { TranslocoHttpLoader } from './app/core/i18n/transloco-loader';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 
+import { DemoSalonGateway } from './app/core/data/demo-salon';
+import { SalonGateway } from './app/core/data/salon-gateway';
+import { provideSupabase } from './app/core/data/supabase';
+import { SupabaseSalonGateway } from './app/core/data/supabase-salon';
+import { environment } from './environments/environment';
+
+// Με URL στο environment μιλάμε με τη βάση. Χωρίς, τρέχει το demo.
+const dataProviders = environment.supabaseUrl
+  ? [provideSupabase(), { provide: SalonGateway, useClass: SupabaseSalonGateway }]
+  : [{ provide: SalonGateway, useClass: DemoSalonGateway }];
+
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules), withComponentInputBinding()),
     provideHttpClient(),
+    ...dataProviders,
     provideTransloco({
       config: {
         availableLangs: ['el', 'en'],

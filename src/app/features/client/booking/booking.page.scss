@@ -1,0 +1,71 @@
+/* Το Ionic κάνει τα κουμπιά κεφαλαία, και στα ελληνικά τα κεφαλαία κρατούν τους τόνους (ΚΛΕΊΣΕ). Τα αφήνουμε πεζά. */
+ion-button {
+  text-transform: none;
+}
+
+ion-item.selected {
+  --background: var(--ion-color-step-100, #2a2630);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 12px;
+}
+
+.bar div {
+  display: flex;
+  flex-direction: column;
+}
+
+.bar span,
+.hint {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 16px;
+}
+
+.chip {
+  min-height: 44px;
+  min-width: 64px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid var(--ion-color-step-300, #55505c);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.chip.on {
+  background: var(--ion-color-primary);
+  border-color: var(--ion-color-primary);
+  color: var(--ion-color-primary-contrast);
+}
+
+.chip:disabled {
+  opacity: 0.35;
+}
+
+.done {
+  margin: 12px 16px;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--ion-color-success);
+  color: var(--ion-color-success-contrast);
+}
+
+.problem {
+  margin: 12px 0;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--ion-color-danger);
+  color: var(--ion-color-danger-contrast);
+}
