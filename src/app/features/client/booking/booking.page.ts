@@ -17,6 +17,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 import { Service, Stylist } from '../../../core/data/salon-gateway';
 import { BookingStore, slotsFor } from './booking.store';
+import { Router } from '@angular/router';
 
 type Sheet = 'stylist' | 'time' | 'summary' | null;
 
@@ -49,12 +50,17 @@ export class BookingPage implements OnInit {
   readonly phone = signal('');
   /** Το κλειδί μετάφρασης του μηνύματος λάθους, ή null. */
   readonly problem = signal<string | null>(null);
+  private readonly router = inject(Router); // import { Router } from '@angular/router';
 
   ngOnInit(): void {
     void this.store.load();
   }
 
   pickService(service: Service): void {
+        if (service.byRequest) {
+      void this.router.navigate(['/request', service.id]); // μεγάλη αλλαγή: αίτημα με selfie αντί για ώρα
+      return;
+    }
     this.done.set(false);
     this.store.selectService(service);
     this.sheet.set('stylist');

@@ -11,6 +11,7 @@ interface ServiceRow {
   price_cents: number;
   duration_min: number;
   deposit_rate: number;
+  by_request: boolean;
 }
 interface StylistRow {
   id: string;
@@ -38,7 +39,7 @@ export class SupabaseSalonGateway extends SalonGateway {
     const [services, stylists, hours] = await Promise.all([
       this.db
         .from('services')
-        .select('id, name, price_cents, duration_min, deposit_rate')
+        .select('id, name, price_cents, duration_min, deposit_rate, by_request')
         .order('price_cents'),
       this.db.from('stylists').select('id, name').order('name'),
       this.db.from('opening_hours').select('weekday, open_time, close_time').order('weekday'),
@@ -54,6 +55,7 @@ export class SupabaseSalonGateway extends SalonGateway {
         priceCents: r.price_cents,
         durationMin: r.duration_min,
         depositRate: Number(r.deposit_rate),
+        byRequest: r.by_request,
       })),
       stylists: stylists.data as StylistRow[],
       // Η Postgres δίνει '10:00:00'. Κρατάμε το '10:00'.

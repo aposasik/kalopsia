@@ -7,6 +7,7 @@
         "profile": "Profile"
     },
     "booking": {
+        "byRequest": "by request",
         "title": "Price list",
         "minutes": "min",
         "deposit": "Deposit",
@@ -23,5 +24,22 @@
         "taken": "Someone else just booked this time. Please pick another.",
         "closed": "The salon is closed at that time.",
         "failed": "Something went wrong. Please try again."
-    }
+    },
+    "request": {
+    "title": "Request with a photo",
+    "intro": "For big changes we need to see your hair first. Send a photo and tell us what you would like. We reply within 24 hours.",
+    "takePhoto": "Take a photo",
+    "choosePhoto": "Choose from your photos",
+    "removePhoto": "Remove",
+    "photoAlt": "The photo you are about to send",
+    "wish": "What would you like to do?",
+    "preferred": "Which days and times suit you?",
+    "channel": "Where should we reply?",
+    "byPhone": "Phone call",
+    "consent": "I agree to send my photo to the salon, only so it can answer this request.",
+    "send": "Send the request",
+    "sent": "Your request was sent. We will reply within 24 hours.",
+    "uploadFailed": "The photo could not be uploaded. Check your connection and try again.",
+    "failed": "The request was not sent. Please try again."
+  }
 }

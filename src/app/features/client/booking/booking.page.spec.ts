@@ -5,6 +5,7 @@ import { DemoSalonGateway } from '../../../core/data/demo-salon';
 import { SalonGateway } from '../../../core/data/salon-gateway';
 import { BookingPage } from './booking.page';
 import { nextDays } from './booking.store';
+import { provideRouter, Router } from '@angular/router';
 import el from '../../../../assets/i18n/el.json';
 
 describe('BookingPage', () => {
@@ -20,7 +21,7 @@ describe('BookingPage', () => {
           preloadLangs: true,
         }),
       ],
-      providers: [{ provide: SalonGateway, useClass: DemoSalonGateway }],
+      providers: [provideRouter([]), { provide: SalonGateway, useClass: DemoSalonGateway }],
     }).compileComponents();
     fixture = TestBed.createComponent(BookingPage);
     fixture.detectChanges();
@@ -101,5 +102,15 @@ describe('BookingPage', () => {
       '1/12',
     ]);
     expect(days[0].getHours()).toBe(0);
+  });
+
+  // booking.page.spec.ts: import { provideRouter, Router } from '@angular/router';
+  //   providers: [provideRouter([]), { provide: SalonGateway, useClass: DemoSalonGateway }],
+  it('a by-request service opens the request form instead of the stylist sheet', () => {
+    const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    items()[2].click(); // Balayage
+    expect(navigate).toHaveBeenCalledWith(['/request', 'balayage']);
+    expect(fixture.componentInstance.sheet()).toBeNull();
+    expect(fixture.componentInstance.store.service()).toBeNull();
   });
 });

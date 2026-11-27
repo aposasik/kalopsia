@@ -1,0 +1,40 @@
+ion-button {
+    text-transform: none;
+}
+
+.hint {
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+.photo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.photo img {
+    width: 120px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.done,
+.problem {
+    margin: 12px 0;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.done {
+    background: var(--ion-color-success);
+    color: var(--ion-color-success-contrast);
+}
+
+.problem {
+    background: var(--ion-color-danger);
+    color: var(--ion-color-danger-contrast);
+}

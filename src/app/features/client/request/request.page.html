@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/home" text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{ 'request.title' | transloco }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    @if (state() === 'sent') {
+    <p class="done" role="status">{{ 'request.sent' | transloco }}</p>
+    } @else {
+    <p class="hint">{{ 'request.intro' | transloco }}</p>
+
+    <div class="photo">
+        @if (preview(); as src) {
+        <img [src]="src" [alt]="'request.photoAlt' | transloco" />
+        <ion-button fill="clear" (click)="removePhoto()">{{ 'request.removePhoto' | transloco }}</ion-button>
+        } @else {
+        <ion-button (click)="addPhoto('camera')">{{ 'request.takePhoto' | transloco }}</ion-button>
+        <ion-button fill="outline" (click)="addPhoto('gallery')">{{ 'request.choosePhoto' | transloco }}</ion-button>
+        }
+    </div>
+
+    <ion-list>
+        <ion-item>
+            <ion-textarea [label]="'request.wish' | transloco" labelPlacement="stacked" [autoGrow]="true"
+                [counter]="true" [maxlength]="500" [value]="wish()"
+                (ionInput)="wish.set($event.detail.value ?? '')"></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-input [label]="'request.preferred' | transloco" labelPlacement="stacked" [value]="preferred()"
+                (ionInput)="preferred.set($event.detail.value ?? '')"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-select [label]="'request.channel' | transloco" labelPlacement="stacked" interface="popover"
+                [value]="channel()" (ionChange)="channel.set($event.detail.value)">
+                <ion-select-option value="viber">Viber</ion-select-option>
+                <ion-select-option value="whatsapp">WhatsApp</ion-select-option>
+                <ion-select-option value="phone">{{ 'request.byPhone' | transloco }}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-input [label]="'booking.name' | transloco" labelPlacement="stacked" autocomplete="name"
+                [value]="name()" (ionInput)="name.set($event.detail.value ?? '')"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input [label]="'booking.phone' | transloco" labelPlacement="stacked" type="tel" inputmode="tel"
+                autocomplete="tel" [value]="phone()" (ionInput)="phone.set($event.detail.value ?? '')"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-checkbox labelPlacement="end" justify="start" [checked]="consent()"
+                (ionChange)="consent.set($event.detail.checked)">
+                <span class="ion-text-wrap">{{ 'request.consent' | transloco }}</span>
+            </ion-checkbox>
+        </ion-item>
+    </ion-list>
+
+    @if (problem(); as key) {
+    <p class="problem" role="alert">{{ key | transloco }}</p>
+    }
+    <ion-button expand="block" [disabled]="!canSend()" (click)="send()">{{ 'request.send' | transloco }}</ion-button>
+    }
+</ion-content>

@@ -17,6 +17,11 @@ export const routes: Routes = [
           import('./features/client/booking/booking.page').then((m) => m.BookingPage),
       },
       {
+        path: 'request/:serviceId',
+        loadComponent: () =>
+          import('./features/client/request/request.page').then((m) => m.RequestPage),
+      },
+      {
         path: 'appointments',
         loadComponent: () =>
           import('./features/client/appointments/appointments.page').then(

@@ -12,9 +12,30 @@ import {
 } from './salon-gateway';
 
 export const SERVICES: Service[] = [
-  { id: 'cut', name: 'Κούρεμα', priceCents: 2000, durationMin: 30, depositRate: 0.3 },
-  { id: 'color', name: 'Βαφή', priceCents: 4500, durationMin: 90, depositRate: 0.3 },
-  { id: 'balayage', name: 'Balayage', priceCents: 9000, durationMin: 180, depositRate: 0.3 },
+  {
+    id: 'cut',
+    name: 'Κούρεμα',
+    priceCents: 2000,
+    durationMin: 30,
+    depositRate: 0.3,
+    byRequest: false,
+  },
+  {
+    id: 'color',
+    name: 'Βαφή',
+    priceCents: 4500,
+    durationMin: 90,
+    depositRate: 0.3,
+    byRequest: false,
+  },
+  {
+    id: 'balayage',
+    name: 'Balayage',
+    priceCents: 9000,
+    durationMin: 180,
+    depositRate: 0.3,
+    byRequest: true,
+  },
 ];
 
 export const STYLISTS: Stylist[] = [

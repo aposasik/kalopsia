@@ -1,4 +1,3 @@
-
 import { bootstrapApplication } from '@angular/platform-browser';
 import {
   RouteReuseStrategy,
@@ -21,11 +20,22 @@ import { SalonGateway } from './app/core/data/salon-gateway';
 import { provideSupabase } from './app/core/data/supabase';
 import { SupabaseSalonGateway } from './app/core/data/supabase-salon';
 import { environment } from './environments/environment';
+import { RequestGateway } from './app/core/data/request-gateway';
+import { DemoRequestGateway } from './app/core/data/demo-requests';
+import { SupabaseRequestGateway } from './app/core/data/supabase-requests';
+import { CapacitorPhotoSource, PhotoSource } from './app/shared/photo/photo-source';
 
 // Με URL στο environment μιλάμε με τη βάση. Χωρίς, τρέχει το demo.
 const dataProviders = environment.supabaseUrl
-  ? [provideSupabase(), { provide: SalonGateway, useClass: SupabaseSalonGateway }]
-  : [{ provide: SalonGateway, useClass: DemoSalonGateway }];
+  ? [
+      provideSupabase(),
+      { provide: SalonGateway, useClass: SupabaseSalonGateway },
+      { provide: RequestGateway, useClass: SupabaseRequestGateway },
+    ]
+  : [
+      { provide: SalonGateway, useClass: DemoSalonGateway },
+      { provide: RequestGateway, useClass: DemoRequestGateway },
+    ];
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -34,6 +44,7 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes, withPreloading(PreloadAllModules), withComponentInputBinding()),
     provideHttpClient(),
     ...dataProviders,
+    { provide: PhotoSource, useClass: CapacitorPhotoSource },
     provideTransloco({
       config: {
         availableLangs: ['el', 'en'],

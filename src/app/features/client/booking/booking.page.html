@@ -14,7 +14,8 @@
         <ion-item button detail (click)="pickService(service)" [class.selected]="store.service()?.id === service.id">
             <ion-label>
                 <h2>{{ service.name }}</h2>
-                <p>{{ service.durationMin }} {{ 'booking.minutes' | transloco }}</p>
+                <p>{{ service.durationMin }} {{ 'booking.minutes' | transloco }}@if (service.byRequest) { · {{
+                    'booking.byRequest' | transloco }} }</p>
             </ion-label>
             <ion-note slot="end">{{ euro(service.priceCents) }}</ion-note>
         </ion-item>

@@ -6,6 +6,7 @@ export interface Service {
   priceCents: number;  // €20 = 2000
   durationMin: number;
   depositRate: number; // 0.3 = 30%
+  byRequest: boolean;  // true = δεν κλείνεται ώρα, στέλνεται αίτημα
 }
 
 export interface Stylist {
